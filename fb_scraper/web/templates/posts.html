@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">Recent Posts</h3>
+<form class="input-group mb-3">
+  <input type="text" name="q" value="{{ request.args.get('q','') }}" class="form-control" placeholder="Search...">
+  <button class="btn btn-outline-secondary">Search</button>
+</form>
+<table class="table table-hover small">
+  <thead><tr><th>When</th><th>Author</th><th>Text</th></tr></thead>
+  <tbody>
+  {% for row in rows %}
+    <tr>
+      <td>{{ row.published_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ row.author_name or row.author_id }}</td>
+      <td>{{ row.text[:180] }}…</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+[project]
+name = "fb-scraper"
+version = "0.1.0"
+description = "Playwright-based Facebook Group scraper with Celery + Flask admin"
+requires-python = ">=3.11"
+dependencies = [
+  "playwright==1.44.0",
+  "pydantic==2.7.1",
+  "SQLAlchemy==2.0.29",
+  "python-dotenv==1.0.1",
+  "psycopg[binary]==3.1.18",
+  "beautifulsoup4==4.12.2",
+  "lxml==4.9.2",
+  "Flask==3.0.0",
+  "Flask-Login==0.6.2",
+  "Flask-WTF==1.1.1",
+  "Flask-Migrate==4.0.4",
+  "WTForms==3.0.1",
+  "gunicorn==20.1.0",
+  "celery==5.2.7",
+  "redis==4.5.1",
+  "gevent==22.10.2",
+  "click>=8.1.3",
+]
+
+[project.scripts]
+fb-scraper = "fb_scraper.cli:cli"

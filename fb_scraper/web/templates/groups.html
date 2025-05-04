@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">Tracked Groups</h3>
+<form method="post" class="row g-3 mb-4">
+  {{ form.hidden_tag() }}
+  <div class="col-md-4">{{ form.group_id.label }} {{ form.group_id(class="form-control") }}</div>
+  <div class="col-md-6">{{ form.url.label }} {{ form.url(class="form-control") }}</div>
+  <div class="col-md-2 d-grid"><button class="btn btn-primary">Add</button></div>
+</form>
+<table class="table table-striped">
+  <thead><tr><th>ID</th><th>URL</th><th></th></tr></thead>
+  <tbody>
+  {% for gid, url in cfg.items() %}
+    <tr>
+      <td>{{ gid }}</td>
+      <td><a href="{{ url }}" target="_blank">{{ url }}</a></td>
+      <td>
+        <button hx-post="/groups/{{ gid }}/scrape" class="btn btn-sm btn-outline-secondary">
+          Scrape now
+        </button>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
